@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FirebaseLoginSample</string>
+    <!-- following strings are to be defined as per the project -->
+    <!--<string name="default_notification_channel_id"></string>-->
+    <!--<string name="facebook_application_id" translatable="false"></string>-->
+    <!--<string name="facebook_login_protocol_scheme" translatable="false"></string>-->
+
+</resources>
