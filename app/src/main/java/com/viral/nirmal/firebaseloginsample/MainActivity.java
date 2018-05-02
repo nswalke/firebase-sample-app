@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final int RC_FIREBASE_SIGN_IN = 1001;
+    private final int RC_FIREBASE_SIGN_IN = 1001, RC_SIGN_UP = 1002;
 
     private TextView tvMessage;
 
@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_sign_in).setOnClickListener(this);
+        findViewById(R.id.btn_sign_up).setOnClickListener(this);
         tvMessage = findViewById(R.id.tv_message);
+        tvMessage.setText("");
     }
 
     @Override
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (Exception e) {
                     Log.e(getClass().getName(), "Error occurred trying to create firebase sign in Intent", e);
                 }
+                break;
+            case R.id.btn_sign_up:
+                startActivityForResult(new Intent(this, SignUpActivity.class), RC_SIGN_UP);
                 break;
         }
     }
@@ -79,8 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         switch (mResultCode) {
                             case RESULT_OK:
                                 //successfully signed in
-                                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                                tvMessage.setText(String.valueOf(firebaseUser));
+                                startActivity(new Intent(this, UserDetailsActivity.class));
                                 break;
                             default:
                                 //some error occurred
@@ -91,6 +95,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     } catch (Exception e) {
                         Log.e(getClass().getName(), "error in processing activity result: ", e);
+                    }
+                    break;
+                case RC_SIGN_UP:
+                    if (mResultCode == RESULT_OK) {
+                        startActivity(new Intent(this, UserDetailsActivity.class));
+                    } else {
+                        tvMessage.setText("Sign Up Failed");
                     }
                     break;
             }

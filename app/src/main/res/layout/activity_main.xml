@@ -13,11 +13,21 @@
         android:padding="12dp"
         android:text="@string/common_signin_button_text" />
 
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_sign_in"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:padding="12dp"
+        android:text="@string/sign_up_btn_label" />
+
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_sign_in"
+        android:layout_below="@+id/btn_sign_up"
         android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
         android:gravity="center"
